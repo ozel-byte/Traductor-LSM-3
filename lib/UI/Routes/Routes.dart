@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traductor/UI/Pages/BluetoothPage.dart';
 import 'package:traductor/UI/Pages/Menu.dart';
 import 'package:traductor/UI/Pages/ViewImageWords.dart';
 import 'package:traductor/UI/SplashScreen/SplashScreen.dart';
@@ -14,7 +15,8 @@ class Routes extends StatelessWidget {
       routes: {
         "/": (_) => const SplashScreen(),
         "Menu": (_) => const Menu(),
-        "ViewImageWords": (_) => ViewImageWords()
+        "ViewImageWords": (_) => ViewImageWords(),
+        "BluetoothPage": (_) => BluetoothPage()
       },
     );
   }
