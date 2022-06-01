@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traductor/UI/Pages/Menu.dart';
+import 'package:traductor/UI/Pages/ViewImageWords.dart';
 import 'package:traductor/UI/SplashScreen/SplashScreen.dart';
 
 class Routes extends StatelessWidget {
@@ -10,7 +11,11 @@ class Routes extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Traductor-LSM",
-      routes: {"/": (_) => const SplashScreen(), "Menu": (_) => const Menu()},
+      routes: {
+        "/": (_) => const SplashScreen(),
+        "Menu": (_) => const Menu(),
+        "ViewImageWords": (_) => ViewImageWords()
+      },
     );
   }
 }
