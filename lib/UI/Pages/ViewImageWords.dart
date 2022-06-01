@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traductor/Domain/BuscadorImg.dart';
 
 class ViewImageWords extends StatefulWidget {
   ViewImageWords({Key? key}) : super(key: key);
@@ -8,17 +9,16 @@ class ViewImageWords extends StatefulWidget {
 }
 
 class _ViewImageWordsState extends State<ViewImageWords> {
-  List<Widget> listImage = [];
   final TextEditingController _controllertext = TextEditingController();
   int valid = 1;
+  BuscadorImg bi = BuscadorImg();
 
   @override
   void initState() {
     super.initState();
     _controllertext.addListener(() {
       if (_controllertext.text == "") {
-        listImage.clear();
-        setState(() {});
+        bi.limpiarLista();
       }
     });
   }
@@ -61,59 +61,14 @@ class _ViewImageWordsState extends State<ViewImageWords> {
                   child: TextField(
                     controller: _controllertext,
                     onChanged: (String v) {
-                      listImage.clear();
-
+                      bi.limpiarLista();
                       if (v != " ") {
-                        for (var i = 0; i < v.length; i++) {
-                          if (v.substring(i, i + 1) != " ") {
-                            if (v.substring(i, i + 1) == "á") {
-                              final image =
-                                  Image(image: AssetImage("assets/A.jpeg"));
-                              listImage.add(image);
-                              setState(() {});
-                            } else if (v.substring(i, i + 1) == "é") {
-                              final image =
-                                  Image(image: AssetImage("assets/E.jpeg"));
-                              listImage.add(image);
-                              setState(() {});
-                            } else if (v.substring(i, i + 1) == "Í") {
-                              final image =
-                                  Image(image: AssetImage("assets/I.jpeg"));
-                              listImage.add(image);
-                              setState(() {});
-                            } else if (v.substring(i, i + 1) == "ó") {
-                              final image =
-                                  Image(image: AssetImage("assets/O.jpeg"));
-                              listImage.add(image);
-                              listImage.add(image);
-                              setState(() {});
-                            } else if (v.substring(i, i + 1) == "ú") {
-                              final image =
-                                  Image(image: AssetImage("assets/U.jpeg"));
-                              listImage.add(image);
-                              setState(() {});
-                            } else {
-                              final image = Image(
-                                  image: AssetImage("assets/" +
-                                      v.substring(i, i + 1).toUpperCase() +
-                                      ".jpeg"));
-                              listImage.add(image);
-                              setState(() {});
-                            }
-                          } else {
-                            listImage.add(const SizedBox(
-                              width: 30,
-                              height: 10,
-                            ));
-                            setState(() {});
-                          }
-                        }
+                        bi.buscarLetraImg = v;
                       } else {
-                        listImage.add(const SizedBox(
+                        bi.anadirImgList(const SizedBox(
                           width: 30,
                           height: 10,
                         ));
-                        setState(() {});
                       }
                     },
                     decoration: InputDecoration(
@@ -145,9 +100,15 @@ class _ViewImageWordsState extends State<ViewImageWords> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            children: getImage(),
-                          ),
+                          StreamBuilder<List<Widget>>(
+                            stream: bi.streamController.stream,
+                            initialData: [],
+                            builder: (_, stream) {
+                              return Row(
+                                children: stream.data!,
+                              );
+                            },
+                          )
                         ],
                       ),
                     )),
@@ -155,9 +116,5 @@ class _ViewImageWordsState extends State<ViewImageWords> {
             ],
           ),
         ));
-  }
-
-  List<Widget> getImage() {
-    return listImage;
   }
 }
