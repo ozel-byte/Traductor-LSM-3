@@ -1,4 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:traductor/UI/Routes/Routes.dart';
 
-void main() => runApp(const Routes());
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Material Bar'),
+        ),
+        body: Center(
+          child: Container(
+            child: Text('Hello World'),
+          ),
+        ),
+      ),
+    );
+  }
+}
