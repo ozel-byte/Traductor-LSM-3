@@ -28,7 +28,7 @@ class Menu extends StatelessWidget {
                           const EdgeInsets.symmetric(horizontal: 80)),
                       backgroundColor: MaterialStateProperty.all(Colors.blue)),
                   onPressed: () {
-                    Navigator.pushNamed(context, "lenguaje");
+                    Navigator.pushNamed(context, "ViewImageWords");
                   },
                   child: const Text(
                     "Lenguaje senas",
