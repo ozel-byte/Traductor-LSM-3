@@ -41,7 +41,7 @@ class Menu extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.green[300])),
                   onPressed: () {
-                    Navigator.pushNamed(context, "BluetoothPagente");
+                    Navigator.pushNamed(context, "BluetoothPage");
                   },
                   child: const Text("Guante",
                       style: TextStyle(color: Colors.white)))
